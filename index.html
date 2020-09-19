@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene renderer="colorManagement: true;">
+        <a-assets>
+            <a-asset-item position="-1 0.5 -3" id="tree" src="./chinoshade.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity position="-1 0.5 -3" scale="0.5 .5 .5" gltf-model="#tree" visible="true" flatShading="true"></a-entity>
+        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    </a-scene>
+
+    <script>
+        AFRAME.registerComponent('unlit', {
+
+            init: function () {
+
+                function recursivelySetChildrenUnlit(mesh) {
+
+                    if (mesh.material && mesh.material.map) {
+                        mesh.material = new THREE.MeshBasicMaterial({ map: mesh.material.map });
+                    }
+
+                    if (mesh.children) {
+                        for (var i = 0; i < mesh.children.length; i++) {
+                            recursivelySetChildrenUnlit(mesh.children[i]);
+                        }
+                    }
+                }
+
+                this.el.addEventListener('model-loaded', (e) => {
+
+                    const mesh = e.target.getObject3D('mesh');
+                    for (var i = 0; i < mesh.children.length; i++) {
+                        recursivelySetChildrenUnlit(mesh.children[i]);
+                    }
+
+                });
+            }
+        });
+    </script>
+    </body>
+    
+    </html>
