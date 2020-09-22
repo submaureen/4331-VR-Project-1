@@ -7,12 +7,16 @@
 <body>
     <a-scene renderer="colorManagement: true;">
         <a-assets>
-            <a-asset-item position="-1 0.5 -3" id="tree" src="./chinoshade.glb"></a-asset-item>
+            <a-asset-item position="-1 0.5 -3" id="tree" src="./chi.glb"></a-asset-item>
+            <a-asset-item position="-1 0.5 -3" id="tree2" src="./chismooth.glb"></a-asset-item>
+            <a-asset-item unlit position="0 0 0" id="floorbear" src="./planeglb.glb"></a-asset-item>
         </a-assets>
+    <div style="color: blue">press wasd to move</div>
+    <div class="square"></div>
 
-        <a-entity position="-1 0.5 -3" scale="0.5 .5 .5" gltf-model="#tree" visible="true" flatShading="true"></a-entity>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-entity unlit position="1 .7 -3" scale="0.10 .10 .10" gltf-model="#tree2" visible="true" flatShading="true"></a-entity>
+        <a-entity position="0 .5 0" gltf-model="#floorbear" scale="1 1 1"></a-entity>
+        <a-plane position="0 -1 -7" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
     </a-scene>
 
     <script>
