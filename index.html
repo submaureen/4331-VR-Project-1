@@ -1,53 +1,15 @@
-<html>
-
 <head>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-</head>
-
-<body>
-    <a-scene renderer="colorManagement: true;">
-        <a-assets>
-            <a-asset-item position="-1 0.5 -3" id="tree" src="./chi.glb"></a-asset-item>
-            <a-asset-item position="-1 0.5 -3" id="tree2" src="./chismooth.glb"></a-asset-item>
-            <a-asset-item unlit position="0 0 0" id="floorbear" src="./planeglb.glb"></a-asset-item>
-        </a-assets>
-    <div style="color: blue">press wasd to move</div>
-    <div class="square"></div>
-
-        <a-entity unlit position="1 .7 -3" scale="0.10 .10 .10" gltf-model="#tree2" visible="true" flatShading="true"></a-entity>
-        <a-entity position="0 .5 0" gltf-model="#floorbear" scale="1 1 1"></a-entity>
-        <a-plane position="0 -1 -7" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-    </a-scene>
-
-    <script>
-        AFRAME.registerComponent('unlit', {
-
-            init: function () {
-
-                function recursivelySetChildrenUnlit(mesh) {
-
-                    if (mesh.material && mesh.material.map) {
-                        mesh.material = new THREE.MeshBasicMaterial({ map: mesh.material.map });
-                    }
-
-                    if (mesh.children) {
-                        for (var i = 0; i < mesh.children.length; i++) {
-                            recursivelySetChildrenUnlit(mesh.children[i]);
-                        }
-                    }
-                }
-
-                this.el.addEventListener('model-loaded', (e) => {
-
-                    const mesh = e.target.getObject3D('mesh');
-                    for (var i = 0; i < mesh.children.length; i++) {
-                        recursivelySetChildrenUnlit(mesh.children[i]);
-                    }
-
-                });
-            }
-        });
+    <script src="https://cdn.jsdelivr.net/npm/aframe@0.9.2/dist/aframe-master.min.js" integrity="sha256-2bFCSEsTdg8TetE5ESwp5iYsveMPynOzQEydvhjVl7g=" crossorigin="anonymous"></script>
+    <script src="./dragndrop.js">
     </script>
-    </body>
-    
-    </html>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-box dragndrop position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+      <a-sphere dragndrop position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder dragndrop position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
