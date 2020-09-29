@@ -9,8 +9,7 @@ document.addEventListener('keydown', event => {
             break;
 
         case 'o':
-            //document.getElementById('chi2').setAttribute('visible', 'false')
-            //console.log(document.getElementById('chi'))
+            document.getElementById('chi2').setAttribute('visible', 'false')
             break;
 
         default:

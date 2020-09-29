@@ -5,7 +5,6 @@
 <script>
 </script>
 
-
 <body>
   <div class="stinky" style="color: blue">press wasd to move</div>
   <button style="z-index: 2; position: absolute;" type="button" onclick="testFunc()">Click Me!</button>
@@ -15,39 +14,30 @@
       <a-assets>
         <a-asset-item position="-1 0.5 -2" id="tree" src="./chi.glb"></a-asset-item>
         <a-asset-item position="-1 0.5 -3" id="chi" src="./chismooth.glb"></a-asset-item>
-        <a-asset-item position="0 0 0" id="floorbear" src="./testbig.glb"></a-asset-item>
+        <a-asset-item position="0 0 0" id="floorbear" src="./planeglb.glb"></a-asset-item>
       </a-assets>
 
-      <a-box class="clickable" id="box" color="#EF2D5E" position="3 1 -4" change-color-on-hover
+      <a-box class="clickable" id="box" color="#EF2D5E" position="0 1 -4" change-color-on-hover
         raycaster="far: 9"></a-box>
 
-        <a-box dragndrop color="#EF2D5E" position="3 0 0"></a-box>
+        <a-box dragndrop color="#EF2D5E" position="0 0 0"></a-box>
 
-      <a-entity dragndrop id="chi2" position="1 .8 -3" scale="0.10 .10 .10" gltf-model="#chi" visible="true" unlit clicker
+      <a-entity dragndrop id="chi2" position="1 2 -3" scale="0.10 .10 .10" gltf-model="#chi" visible="true" unlit clicker
         flatShading="true"></a-entity>
 
-      <a-entity class="clickable" id="chi2" change-color-on-hover position="1 5 -2" scale="0.10 .10 .10" gltf-model="#chi" visible="true"
+      <a-entity class="clickable" id="chi2" change-color-on-hover position="1 2 -2" scale="0.10 .10 .10" gltf-model="#chi" visible="true"
         flatShading="true" raycaster="far: 9"></a-entity>
 
       <a-entity position="0 .5 0" gltf-model="#floorbear" scale="1 1 1"></a-entity>
 
       <a-plane position="0 -1 -7" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
 
-      <a-entity id="movement" movement-controls="speed: .1">
-        <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true" acceleration="1">
+      <a-entity movement-controls>
+        <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true">
           <a-entity raycaster="objects: .clickable" cursor="fuse: true" position="0 0 -.1" scale=".001 .001 .001"
           geometry="primitive: ring" color="grey"></a-entity>
         </a-entity>
       </a-entity>
-
-      <script>
-        if (AFRAME.utils.device.isMobile())
-        {
-          document.getElementById('movement').setAttribute('wasd-controls', false)
-          document.getElementById('movement').setAttribute('movement-controls', 'speed: .01')
-        }
-      
-      </script>
 
     </a-scene>
   </div>
