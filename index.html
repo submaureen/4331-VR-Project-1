@@ -1,5 +1,5 @@
 <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.0/dist/aframe-extras.min.js"></script>   
 <script src="./src/user-control.js"></script>
 <script src="./dragndrop.js"></script>
 <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
@@ -15,11 +15,12 @@
     <a-scene id="scene" renderer="colorManagement: true; antialias: false" mouse-to-world>
       <a-assets>
         <a-asset-item position="-1 0.5 -2" id="tree" src="./chi.glb"></a-asset-item>
-        <a-asset-item position="-1 0.5 -3" id="chi" src="./chismooth.glb"></a-asset-item>
+        <a-asset-item position="-1 2 -3" id="chi" src="./chismooth.glb"></a-asset-item>
         <a-asset-item position="0 0 0" id="floorbear" src="./testbig.glb"></a-asset-item>
         <a-asset-item id="sofa" src="./assets/my-assets/sofa.glb"></a-asset-item>
         <a-asset-item id="bed" src="./assets/my-assets/bed.gltf"></a-asset-item>
-        <a-asset-item id="ssofa" src="./assets/my-assets/ssofa.gltf"></a-asset-item>
+        <audio id="nge" src="./Neon Genesis Evangelion (A Cruel Angel's Thesis) Anime Intro Opening Theme HD BluRay (Best Quali.mp3" preload="auto"></audio>
+        <a-asset-item id="pillow" src="./assets/my-assets/ssofapillow.gltf"></a-asset-item>
       </a-assets>
 
       <a-entity environment="preset: forest; flatShading: false"></a-entity>
@@ -29,18 +30,26 @@
 
         <a-box dragndrop color="#EF2D5E" position="3 0 0"></a-box>
 
-      <a-entity  dragndrop id="chi2" position="1 .8 -3" scale=".1 .1 .1" gltf-model="#chi" unlit visible="true" clicker
+      <a-entity animation-mixer id="chi2" position="1 .8 -3" scale=".1 .1 .1" gltf-model="#chi" unlit visible="true" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity unlit dragndrop scale=".1 .1 .1" gltf-model="#chi" visible="false" position="1 2 -2"animation-mixer></a-entity>
+
+        <a-entity  dragndrop id="chi2" position="0 .8 -3" scale=".5 .5 .5" gltf-model="#pillow" unlit visible="true" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity  dragndrop id="chi2" position="2 .8 -3" scale=".5 .5 .5" gltf-model="#pillow" unlit visible="true" clicker
         flatShading="true"></a-entity>
 
       <a-entity class="clickable" id="chi2" change-color-on-hover position="1 1 -2" scale="0.10 .10 .10"  gltf-model="#chi" visible="true"
-        flatShading="true" raycaster="far: 9"></a-entity>
+        flatShading="true" raycaster="far: 9" sound="src: #nge; on: click"></a-entity>
 
       <a-entity flatShading="true" position="0 .5 0" gltf-model="#floorbear" scale="1 1 1"></a-entity>
 
       <a-plane position="0 -1 -7" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
 
       <a-entity id="movement" movement-controls="speed: .2">
-        <a-entity camera position="0 1.9 0" look-controls="pointerLockEnabled: true" acceleration="1">
+        <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true" acceleration="1">
           <a-entity raycaster="objects: .clickable" cursor="fuse: true" position="0 0 -.1" scale=".001 .001 .001"
           geometry="primitive: ring" color="grey"></a-entity>
         </a-entity>
