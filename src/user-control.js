@@ -9,7 +9,11 @@ document.addEventListener('keydown', event => {
             break;
 
         case 'o':
-            document.getElementById('chi2').setAttribute('visible', 'false')
+            var postCovid = document.getElementsByClassName("postcovid");
+            for (var i = 0; i < postCovid.length; i++) {
+                postCovid[i].setAttribute('visible', 'false')
+                //sdsddocument.getElementById('chi2').setAttribute('visible', 'false')
+            }
             break;
 
         default:
