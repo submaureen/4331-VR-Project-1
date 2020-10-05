@@ -150,8 +150,8 @@ function toggleRona() {
 
 function parseIngredients() {
     console.log(foobs)
-    if (foobString.includes("egg")) {
-        console.log("you cooked an egg!!!!!")
+    if (foobString.includes("eggFood") && (foobString.length == 1)) {
+        document.getElementById('eggMeal').setAttribute('visible', true)
 
     }
 

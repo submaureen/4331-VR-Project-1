@@ -29,7 +29,13 @@
           <a-asset-item id="noodles"position="0 0 0" src="./assets/my-assets/noodles.gltf"></a-asset-item>
           <a-asset-item id="veg"position="0 0 0" src="./assets/my-assets/veg.gltf"></a-asset-item>
           <a-asset-item id="cooker"position="0 0 0" src="./assets/my-assets/ricecooker.glb"></a-asset-item>
+
+
           <a-asset-item id="riceveg"position="0 0 0" src="./assets/my-assets/meals/riceveggie.glb"></a-asset-item>
+
+          <a-asset-item id="eggMealAsset"position="0 0 0" src="./assets/my-assets/meals/eggmeal.glb"></a-asset-item>
+
+          <a-asset-item id="riceEgg"position="0 0 0" src="./assets/my-assets/meals/riceegg.glb"></a-asset-item>
 
 
           <!-- test models -->
@@ -54,7 +60,6 @@
         <a-image src="./assets/txt/buttonwarn.png" position="2 1.5 -3.5" rotation="0 -90 0"></a-image>
         <a-image src="./assets/txt/movementwarn.png" position="1.2 1.6 -4.5" rotation="0 0 0"></a-image>
         <a-image class="postcov" visible="false" src="./assets/txt/cookingwarn.png" position="-3 1.5 -1.60" rotation="0 0 0"></a-image>
-        <a-image class="postcov" visible="false"src="./assets/txt/cookingbuttonwarn.png" position="-2.4 1.15s -1.5" rotation="0 0 0"></a-image>
         <!-- lights ! -->
 
 
@@ -117,7 +122,13 @@
 
         <!-- meals -->
         
-        <a-entity id="rvMeal" gltf-model="#riceveg" class="food postcov"   dragndrop change-color-on-hover position="-3 1.5 -1.60" scale="1 1 1"  visible="false" clicker
+        <a-entity id="rvMeal" gltf-model="#riceveg" class="food"   dragndrop change-color-on-hover position="-3 1.5 -1.60" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="eggMeal" gltf-model="#eggMealAsset" class="food"   dragndrop change-color-on-hover position="-2.7 1.5 -1.60" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="reMeal" gltf-model="#riceEgg" class="food"   dragndrop change-color-on-hover position="-3 1.5 -1.60" scale="1 1 1"  visible="false" clicker
         flatShading="true"></a-entity>
 
 
