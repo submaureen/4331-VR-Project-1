@@ -18,7 +18,9 @@ The lighting color will change to white, blue, or red.
 The pink button applies a shader that allows objects to ignore light, allowing for an unshaded look.
 This was achieved by using a lighting script and by changing the colorManagement settings on renderer.
 
-source of script and render settings: my [Stackoverflow question](https://stackoverflow.com/questions/63964389/ignore-lighting-in-a-frame-imported-gltf-model-similarly-to-blender/63973677#63973677)
+source of script and render settings: my [Stackoverflow question](https://stackoverflow.com/questions/63964389/ignore-lighting-in-a-frame-imported-gltf-model-similarly-to-blender/63973677#63973677).
+
+
 In order to keep track of the buttons, I registered a component to use as an attribute for each lighting method.
 ```
 AFRAME.registerComponent('buttons', {
@@ -101,7 +103,7 @@ AFRAME.registerComponent("track-cursor", {
 ## Models
 I built every model except for this broccoli. I created every texture as well in Blender.
 
-[Brocolli](https://sketchfab.com/3d-models/foodtent-broccolirework-eba77c4126d2458a93481231c4831b3b)
+[Broccoli](https://sketchfab.com/3d-models/foodtent-broccolirework-eba77c4126d2458a93481231c4831b3b)
 
 It is surprisingly hard to model a broccoli.
 
