@@ -1,100 +1,189 @@
-<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.0/dist/aframe-extras.min.js"></script>   
-<script src="./src/user-control.js"></script>
-<script src="./dragndrop.js"></script>
-<script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
-<script>
-</script>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.0/dist/aframe-extras.min.js"></script>   
+  <script src="./src/user-control.js"></script>
+  <script src="./dragndrop.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script> 
 
-
-<body>
-  <div class="stinky" style="color: blue;">press wasd to move</div>
-  <button style="z-index: 2; position: absolute;" type="button" onclick="testFunc()">Click Me!</button>
-  <div class="square"></div>
-  <div id='aframe-wrapper'>
-    <a-scene id="scene" renderer="colorManagement: true; antialias: false" mouse-to-world>
-      <a-assets>
-        <a-asset-item position="-1 0.5 -2" id="tree" src="./chi.glb"></a-asset-item>
-        <a-asset-item position="-1 2 -3" id="chi" src="./chismooth.glb"></a-asset-item>
-        <a-asset-item position="0 0 0" id="floorbear" src="./testbig.glb"></a-asset-item>
-        <a-asset-item id="sofa" src="./assets/my-assets/sofa.glb"></a-asset-item>
-        <a-asset-item id="bed" src="./assets/my-assets/bed.gltf"></a-asset-item>
-        <audio id="nge" src="./Neon Genesis Evangelion (A Cruel Angel's Thesis) Anime Intro Opening Theme HD BluRay (Best Quali.mp3" preload="auto"></audio>
-        <a-asset-item id="pillow" src="./assets/my-assets/ssofapillow.gltf"></a-asset-item>
-      </a-assets>
-
-      <a-entity environment="preset: forest; flatShading: false"></a-entity>
-
-      <a-box class="clickable" id="box" color="#EF2D5E" position="3 1 -4" change-color-on-hover
-        raycaster="far: 9"></a-box>
-
-        <a-box dragndrop color="#EF2D5E" position="3 0 0"></a-box>
-
-      <a-entity animation-mixer id="chi2" position="1 .8 -3" scale=".1 .1 .1" gltf-model="#chi" unlit visible="true" clicker
-        flatShading="true"></a-entity>
-
-        <a-entity unlit dragndrop scale=".1 .1 .1" gltf-model="#chi" visible="false" position="1 2 -2"animation-mixer></a-entity>
-
-        <a-entity  dragndrop id="chi2" position="0 .8 -3" scale=".5 .5 .5" gltf-model="#pillow" unlit visible="true" clicker
-        flatShading="true"></a-entity>
-
-        <a-entity  dragndrop id="chi2" position="2 .8 -3" scale=".5 .5 .5" gltf-model="#pillow" unlit visible="true" clicker
-        flatShading="true"></a-entity>
-
-      <a-entity class="clickable" id="chi2" change-color-on-hover position="1 1 -2" scale="0.10 .10 .10"  gltf-model="#chi" visible="true"
-        flatShading="true" raycaster="far: 9" sound="src: #nge; on: click"></a-entity>
-
-      <a-entity flatShading="true" position="0 .5 0" gltf-model="#floorbear" scale="1 1 1"></a-entity>
-
-      <a-plane position="0 -1 -7" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-
-      <a-entity id="movement" movement-controls="speed: .2">
-        <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true" acceleration="1">
-          <a-entity raycaster="objects: .clickable" cursor="fuse: true" position="0 0 -.1" scale=".001 .001 .001"
-          geometry="primitive: ring" color="grey"></a-entity>
-        </a-entity>
-      </a-entity>
-
-      <script>
-        if (AFRAME.utils.device.isMobile())
-        {
-          document.getElementById('movement').setAttribute('wasd-controls', false)
-          document.getElementById('movement').setAttribute('movement-controls', 'speed: .01')
-        }
-      
-      </script>
-
-      
-    <script>
-      AFRAME.registerComponent('unlit', {
-
-          init: function () {
-
-              function recursivelySetChildrenUnlit(mesh) {
-
-                  if (mesh.material && mesh.material.map) {
-                      mesh.material = new THREE.MeshBasicMaterial({ map: mesh.material.map });
-                  }
-
-                  if (mesh.children) {
-                      for (var i = 0; i < mesh.children.length; i++) {
-                          recursivelySetChildrenUnlit(mesh.children[i]);
-                      }
-                  }
-              }
-
-              this.el.addEventListener('model-loaded', (e) => {
-
-                  const mesh = e.target.getObject3D('mesh');
-                  for (var i = 0; i < mesh.children.length; i++) {
-                      recursivelySetChildrenUnlit(mesh.children[i]);
-                  }
-
-              });
-          }
-      });
+  <script>
   </script>
 
-    </a-scene>
-  </div>
-</body>
+
+  <body>
+    <div class="stinky" style="color: blue;">press wasd to move</div>
+    <button style="z-index: 2; position: absolute;" type="button" onclick="testFunc()">Click Me!</button>
+    <div class="square"></div>
+    <div id='aframe-wrapper'>
+      <a-scene id="scene" renderer="colorManagement: true; antialias: false" >
+        <a-assets>
+          <a-asset-item position="-1 0.5 -2" id="tree" src="./chi.glb"></a-asset-item>
+          <a-asset-item position="-1 2 -3" id="chi" src="./chismooth.glb"></a-asset-item>
+          <a-asset-item position="0 0 0" id="floorbear" src="./testbig.glb"></a-asset-item>
+          <a-asset-item position="0 0 0" id="littlebear" src="./testsmall.glb"></a-asset-item>
+
+          <!-- foods! -->
+          <a-asset-item id="eggmodel"position="0 0 0" id="egg" src="./assets/external/Unity2Skfb.gltf"></a-asset-item>
+          <a-asset-item id="chickenleg"position="0 0 0" src="./assets/my-assets/chickenleg.gltf"></a-asset-item>
+          <a-asset-item id="rice"position="0 0 0" src="./assets/my-assets/rice.gltf"></a-asset-item>
+          <a-asset-item id="kimchi"position="0 0 0" src="./assets/my-assets/kimchi.gltf"></a-asset-item>
+          <a-asset-item id="noodles"position="0 0 0" src="./assets/my-assets/noodles.gltf"></a-asset-item>
+          <a-asset-item id="veg"position="0 0 0" src="./assets/my-assets/veg.gltf"></a-asset-item>
+          <a-asset-item id="cooker"position="0 0 0" src="./assets/my-assets/ricecooker.glb"></a-asset-item>
+          <a-asset-item id="riceveg"position="0 0 0" src="./assets/my-assets/meals/riceveggie.glb"></a-asset-item>
+
+
+          <!-- test models -->
+          <a-asset-item id="bed" src="./assets/my-assets/bed.gltf"></a-asset-item>
+          <a-asset-item id="sofa" src="./assets/my-assets/sofa.glb"></a-asset-item>
+          <a-asset-item id="wok" rotation="0 -34.910318457321054 0"  position="-2.86931 1.21283 -1.35344" src="./assets/my-assets/wok.glb"></a-asset-item>
+          <audio id="nge" src="./Neon Genesis Evangelion (A Cruel Angel's Thesis) Anime Intro Opening Theme HD BluRay (Best Quali.mp3" preload="auto"></audio>
+          <audio id="ricesong" src="./zojisong.mp3" preload="auto"></audio>
+          <a-asset-item id="pillow" src="./assets/my-assets/ssofapillow.gltf"></a-asset-item>
+        </a-assets>
+        <a-sky color="#87ceeb"></a-sky>
+        <!-- movement -->
+        <a-entity id="movement" movement-controls="speed: .2">
+          <a-entity camera position="1.2 1.6 -4" rotation="0 180 0" look-controls="pointerLockEnabled: true" acceleration="1">
+            <a-entity raycaster="objects: .clickable" cursor="fuse: true" position="0 0 -.1" scale=".001 .001 .001"
+            geometry="primitive: ring" color="grey"></a-entity>
+          </a-entity>
+        </a-entity>
+
+        <!-- text -->
+
+        <a-image src="./assets/txt/buttonwarn.png" position="2 1.5 -3.5" rotation="0 -90 0"></a-image>
+        <a-image src="./assets/txt/movementwarn.png" position="1.2 1.6 -4.5" rotation="0 0 0"></a-image>
+        <a-image class="postcov" visible="false" src="./assets/txt/cookingwarn.png" position="-3 1.5 -1.60" rotation="0 0 0"></a-image>
+        <a-image class="postcov" visible="false"src="./assets/txt/cookingbuttonwarn.png" position="-2.4 1.15s -1.5" rotation="0 0 0"></a-image>
+        <!-- lights ! -->
+
+
+
+        
+        <a-light id="masterLight" type="hemisphere" intensity=".6" position="0 0 0" visible=false></a-light>
+
+        <a-entity id="def1" light="type: ambient; color: #BBB" visible="true"></a-entity>
+        <a-entity id="def2" light="type: directional; color: #FFF; intensity: 0.2" position="-0.5 1 1" visible="true"></a-entity>
+
+        <!-- lighting control -->
+
+        <a-box id="redLight" class="clickable" buttons color="red" scale=".1 .1 .1" position="2 1.5 -3.3"
+        raycaster="far: 20"></a-box>
+
+        <a-box id="blueLight" class="clickable" buttons color="blue" scale=".1 .1 .1" position="2 1.5 -3.6"
+        raycaster="far: 20"></a-box>
+
+        <a-box id="normLight" class="clickable" buttons color="white" scale=".1 .1 .1" position="2 1.5 -3.9"
+        raycaster="far: 20"></a-box>
+
+        <a-box id="unlitty" buttons color="pink" scale=".1 .1 .1" position="2 1.5 -4.2"
+        raycaster="far: 20"></a-box>
+
+        <a-box id="covid" buttons color="yellow" scale=".1 .1 .1" position="2 1.5 -3"
+        raycaster="far: 20"></a-box>
+
+        <!-- base house areas -->
+
+        <a-entity id="post" class="postcov" flatShading="true" position="0 .5 0" gltf-model="#floorbear" scale="1 1 1" visible="false"></a-entity>
+
+        <a-entity id="pre" flatShading="true" position="0 .5 0" gltf-model="#littlebear" scale="1 1 1" ></a-entity>
+
+
+        <!-- kitchen area interactions-->
+
+        <a-box id="cookingTime" buttons color="#EF2D5E" scale=".1 .1 .1" position="-2.35 1.5 -1.65"
+        raycaster="far: 20"></a-box>
+
+        <a-entity id="wokhei" class="box postcov" aabb-collider="objects: .food" position="-2.8 1.21283 -1.400" scale="1 1 1" gltf-model="#wok" visible="false" clicker
+        flatShading="true" rotation="0 -34.910318457321054 0"></a-entity>
+
+        <a-entity id="chickenLegFood" gltf-model="#chickenleg" class="food postcov"   dragndrop change-color-on-hover position="-3.5 1.2 -1.3" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="riceFood" gltf-model="#rice" class="food postcov"   dragndrop change-color-on-hover position="-2.3 1.2 -1.3" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="eggFood" gltf-model="#eggmodel" class="food postcov"   dragndrop change-color-on-hover position="-4.1 1.3 .2" scale=".15 .15 .15"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="vegFood" gltf-model="#veg" class="food postcov"   dragndrop change-color-on-hover position="-3.8 1.2 .2" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="kimchiFood" gltf-model="#kimchi" class="food postcov"   dragndrop change-color-on-hover position="-2.46 1.2 .2" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <a-entity id="noodleFood" gltf-model="#noodles" class="food postcov"   dragndrop change-color-on-hover position="-2.8 1.2 .2" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+        <!-- meals -->
+        
+        <a-entity id="rvMeal" gltf-model="#riceveg" class="food postcov"   dragndrop change-color-on-hover position="-3 1.5 -1.60" scale="1 1 1"  visible="false" clicker
+        flatShading="true"></a-entity>
+
+
+
+
+        <a-box class="clickable" id="box" color="#EF2D5E" position="3 1 -4" change-color-on-hover
+          raycaster="far: 9"></a-box>
+
+
+
+          <a-box dragndrop color="#EF2D5E" position="3 0 0"></a-box>
+
+        <a-entity class="clickable postcov" id="zojirushi"  change-color-on-hover id="chimover" position="-3 1.4 1.2" scale=".2 .2 .2" gltf-model="#cooker" visible="false" clicker
+          flatShading="true" sound="src: #ricesong; on: click"></a-entity>
+
+
+          <a-entity dragndrop scale=".1 .1 .1" gltf-model="#chi" visible="false" position="0 2 -2"animation-mixer></a-entity>
+
+
+        <a-entity class="clickable postcov" id="chi2" dragndrop position="1 .7 -4" scale="0.10 .10 .10"  gltf-model="#chi" visible="false"
+          flatShading="true" raycaster="far: 9"></a-entity>
+
+
+        <a-plane position="0 .5 0" rotation="-90 0 0" scale="4 4 4d"width="4" height="4" color="#7BC8A4"></a-plane>
+
+
+        <script>
+          if (AFRAME.utils.device.isMobile())
+          {
+            document.getElementById('movement').setAttribute('wasd-controls', false)
+            document.getElementById('movement').setAttribute('movement-controls', 'speed: .01')
+          }
+        
+        </script>
+
+        
+      <script>
+        AFRAME.registerComponent('unlit', {
+
+            init: function () {
+
+                function recursivelySetChildrenUnlit(mesh) {
+
+                    if (mesh.material && mesh.material.map) {
+                        mesh.material = new THREE.MeshBasicMaterial({ map: mesh.material.map });
+                    }
+
+                    if (mesh.children) {
+                        for (var i = 0; i < mesh.children.length; i++) {
+                            recursivelySetChildrenUnlit(mesh.children[i]);
+                        }
+                    }
+                }
+
+                this.el.addEventListener('model-loaded', (e) => {
+
+                    const mesh = e.target.getObject3D('mesh');
+                    for (var i = 0; i < mesh.children.length; i++) {
+                        recursivelySetChildrenUnlit(mesh.children[i]);
+                    }
+
+                });
+            }
+        });
+    </script>
+
+      </a-scene>
+    </div>
+  </body>

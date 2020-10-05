@@ -18,7 +18,7 @@ AFRAME.registerComponent("track-cursor", {
                 this.el.addState("dragging");
             }
         })
-        this.el.addEventListener("click", e => {
+        this.el.addEventListener("mouseup", e => {
             if (this.el.is("dragging")) {
                 this.el.sceneEl.camera.el.setAttribute("look-controls", {
                     enabled: true
@@ -38,6 +38,7 @@ AFRAME.registerComponent("dragndrop", {
 
         this.el.addEventListener("stateadded", e => {
             if (e.detail == "dragging") {
+                console.log("dragging!")
 
                 let mouse = new THREE.Vector2()
                 let camera = this.el.sceneEl.camera
@@ -51,7 +52,7 @@ AFRAME.registerComponent("dragndrop", {
 
 
                 this.range = 0;
-                console.log(document.getElementById('cursor'))
+                // console.log(document.getElementById('cursor'))
                 this.dist = this.el.object3D.position
                     .clone()
                     .sub(vector)
@@ -103,8 +104,8 @@ AFRAME.registerComponent('mouse-to-world', {
             let mouse = new THREE.Vector2()
             let camera = AFRAME.scenes[0].camera
             let rect = document.querySelector('body').getBoundingClientRect()
-            console.log(document.getElementById('scene').clientWidth);
-            console.log(e.clientX)
+            // console.log(document.getElementById('scene').clientWidth);
+            // console.log(e.clientX)
             let centerX = document.getElementById('scene').clientWidth / 2
             let centerY = document.getElementById('scene').clientHeight / 2
             mouse.x = ((centerX - rect.left) / rect.width) * 2 - 1
@@ -113,7 +114,7 @@ AFRAME.registerComponent('mouse-to-world', {
             let vectorCenter = new THREE.Vector3(rect.width / 2, rect.height / 2, -2).unproject(camera)
             //console.log(rect.width)
             //console.log(rect.height)
-            console.log(vector)
+            // console.log(vector)
         })
     }
 });
