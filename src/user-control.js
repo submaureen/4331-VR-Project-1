@@ -152,7 +152,18 @@ function parseIngredients() {
     console.log(foobs)
     if (foobString.includes("eggFood") && (foobString.length == 1)) {
         document.getElementById('eggMeal').setAttribute('visible', true)
-
+    }
+    else if (foobString.includes("riceFood") && foobString.includes("vegFood") && (foobString.length == 2))
+    {
+        document.getElementById('rvMeal').setAttribute('visible', true)
+    }
+    else if (foobString.includes("riceFood") && foobString.includes("eggFood") && (foobString.length == 2))
+    {
+        document.getElementById('reMeal').setAttribute('visible', true)
+    }
+    else if (foobString.includes("riceFood") && foobString.includes("chickenLegFood") && (foobString.length == 2))
+    {
+        document.getElementById('rcMeal').setAttribute('visible', true)
     }
 
 }

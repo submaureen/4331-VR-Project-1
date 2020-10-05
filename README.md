@@ -7,6 +7,10 @@ This is meant to be a simplification of the 3 places I stayed the most during qu
 ![House](https://i.imgur.com/uaqNwKv.png)
 This is the house in A-frame.
 
+## Video (click to access video)
+
+[![IMAGE ALT TEXT HERE](https://i9.ytimg.com/vi/XGPDjqvsXQk/mqdefault.jpg?sqp=CKTO6vsF&rs=AOn4CLDYq9eRKyHVTNC1QzG2hPz7EQnbWQ&retry=6)](https://www.youtube.com/embed/GvSW6l1bF-I)
+
 ## Instructions and Interactions
 
 There are instructions to move using WASD upon entering the scene.
@@ -99,6 +103,36 @@ AFRAME.registerComponent("track-cursor", {
     },
 });
 ```
+
+##Cooking with drag and drop
+
+[Demo link](https://streamable.com/29b5hs)
+
+Cooking a meal of chicken and rice with the drag and drop; I used the aabb collider library to check what ingredients were colliding with the wok. If the user has a valid recipe, the food appears!
+
+```
+function parseIngredients() {
+    console.log(foobs)
+    if (foobString.includes("eggFood") && (foobString.length == 1)) {
+        document.getElementById('eggMeal').setAttribute('visible', true)
+    }
+    else if (foobString.includes("riceFood") && foobString.includes("vegFood") && (foobString.length == 2))
+    {
+        document.getElementById('rvMeal').setAttribute('visible', true)
+    }
+    else if (foobString.includes("riceFood") && foobString.includes("eggFood") && (foobString.length == 2))
+    {
+        document.getElementById('reMeal').setAttribute('visible', true)
+    }
+    else if (foobString.includes("riceFood") && foobString.includes("chickenLegFood") && (foobString.length == 2))
+    {
+        document.getElementById('rcMeal').setAttribute('visible', true)
+    }
+
+}
+```
+
+
 
 ## Models
 I built every model except for this broccoli. I created every texture as well in Blender.
